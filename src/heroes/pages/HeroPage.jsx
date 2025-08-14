@@ -1,6 +1,11 @@
+import { getHeroById } from "../helpers";
+import { Navigate, useParams } from "react-router";
 
 export const HeroPage = () => {
-  return (
-    <h1>HeroPage</h1>
-  )
-}
+  const { id } = useParams();
+  const hero = getHeroById(id);
+
+  if (!hero) return <Navigate to="/marvel" />;
+
+  return <h1>HeroPage: {hero?.superhero}</h1>;
+};
